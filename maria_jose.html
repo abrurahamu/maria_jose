@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feliz Cumpleaños</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;400&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffe6f0;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    /* Pantalla Inicial */
+    #pantalla-inicial {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    /* Sticker inicial gatitos7 */
+    .initial-sticker {
+      width: 32vw;
+      max-width: 200px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      margin-bottom: 16px;
+    }
+    #gif-regalo {
+      width: 260px;
+      margin-bottom: 36px;
+      display: none;
+    }
+    #boton-abre {
+      padding: 14px 28px;
+      background: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    #contador {
+      margin-top: 14px;
+      font-size: 1.1em;
+      color: #ad1457;
+      display: none;
+    }
+
+    /* Pantalla Cumpleaños */
+    .pantalla-cumple {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #ffe6f0;
+    }
+    .confetti {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Globos */
+    .balloon {
+      position: absolute;
+      font-size: 3em;
+      opacity: 0.2;
+      animation: float 4s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+    @keyframes float {
+      to { transform: translateY(-20px); }
+    }
+
+    /* Corazones */
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    /* Fila superior */
+    .row-top {
+      position: absolute;
+      top: 2vh;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      z-index: 3;
+    }
+    .sticker {
+      width: 32vw;
+      max-width: 200px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 3;
+    }
+
+    /* Texto central */
+    .texto-central {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 400px;
+      text-align: center;
+      z-index: 2;
+    }
+    .titulo-cumple {
+      margin: 0;
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #e91e63;
+      line-height: 1.1;
+    }
+    .dedicatoria-cumple {
+      margin: .4em 0 0;
+      font-size: 1.1em;
+      color: #e91e63;
+      line-height: 1.3;
+    }
+    .center-bot {
+      display: block;
+      width: 40vw;
+      max-width: 240px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      margin: 36px auto 0;
+      z-index: 2;
+    }
+
+    /* Fila inferior */
+    .row-bottom {
+      position: absolute;
+      bottom: 10vh;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      z-index: 3;
+    }
+    .row-bottom .sticker {
+      width: 36vw;
+      max-width: 220px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pantalla Inicial -->
+  <div id="pantalla-inicial">
+    <img src="gatitos7.jpg" class="initial-sticker" alt="Gatitos 7">
+    <img id="gif-regalo" src="gift_marvel.gif" alt="Regalo animado">
+    <button id="boton-abre">Ábreme</button>
+    <div id="contador"></div>
+  </div>
+
+  <!-- Pantalla Cumpleaños -->
+  <div class="pantalla-cumple" id="pantalla-cumple">
+    <canvas class="confetti"></canvas>
+
+    <!-- Globos -->
+    <span class="balloon" style="left:10%; top:60%;">🎈</span>
+    <span class="balloon" style="left:85%; top:50%; animation-duration:5s;">🎈</span>
+    <span class="balloon" style="left:50%; top:80%; animation-duration:6s;">🎈</span>
+
+    <!-- Corazones -->
+    <span class="heart" style="left:20%; top:30%;">❤️</span>
+    <span class="heart" style="left:80%; top:25%;">⭐</span>
+    <span class="heart" style="left:40%; top:70%;">💖</span>
+
+    <div class="row-top">
+      <img src="gatitos6.jpg" class="sticker" alt="Gatitos 6">
+      <img src="gatitos4.jpg" class="sticker" alt="Gatitos 4">
+      <img src="gatitos2.jpg" class="sticker" alt="Gatitos 2">
+    </div>
+
+    <div class="texto-central">
+      <h1 class="titulo-cumple">Feliz cumpleaños majo</h1>
+      <p class="dedicatoria-cumple">
+        Puede que la distancia nos separe pero mi cariño por ti romperá esa barrera que nos separa físicamente ❤️
+      </p>
+      <img src="gatitos5.jpg" class="center-bot" alt="Gatitos 5">
+    </div>
+
+    <div class="row-bottom">
+      <img src="gatitos.jpg" class="sticker" alt="Gatitos">
+      <img src="gatitos 3.jpg" class="sticker" alt="Gatitos 3">
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('boton-abre'),
+          gif = document.getElementById('gif-regalo'),
+          cnt = document.getElementById('contador'),
+          init = document.getElementById('pantalla-inicial'),
+          show = document.getElementById('pantalla-cumple'),
+          stickerInit = document.querySelector('.initial-sticker');
+
+    btn.onclick = () => {
+      // Oculta la sticker inicial
+      stickerInit.style.display = 'none';
+
+      // Oculta botón e inicia cuenta atrás / gif
+      btn.style.display = 'none';
+      gif.style.display = 'block';
+      cnt.style.display = 'block';
+
+      let dur = 4.6, start = Date.now();
+      cnt.textContent = `Abre en ${dur.toFixed(1)}s`;
+      const iv = setInterval(() => {
+        let t = dur - (Date.now() - start) / 1000;
+        if (t <= 0) {
+          clearInterval(iv);
+          cnt.textContent = '¡Abriendo!';
+          setTimeout(() => {
+            init.style.display = 'none';
+            show.style.display = 'block';
+          }, 300);
+        } else {
+          cnt.textContent = `Abre en ${t.toFixed(1)}s`;
+        }
+      }, 100);
+    };
+
+    // Confetti animado
+    const canvas = document.querySelector('.confetti'),
+          ctx = canvas.getContext('2d');
+    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+    const conf = [];
+    for(let i=0;i<80;i++){
+      conf.push({
+        x: Math.random()*innerWidth,
+        y: Math.random()*-innerHeight,
+        r: Math.random()*7+4,
+        d: Math.random()*18+10,
+        c: `hsl(${Math.random()*360},100%,75%)`,
+        tilt: Math.random()*20-10,
+        ang: 0,
+        inc: Math.random()*0.08+0.04
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      conf.forEach(o=>{
+        ctx.beginPath();
+        ctx.lineWidth = o.r;
+        ctx.strokeStyle = o.c;
+        ctx.moveTo(o.x+o.tilt+o.r/3, o.y);
+        ctx.lineTo(o.x+o.tilt, o.y+o.tilt+o.d/2);
+        ctx.stroke();
+      });
+    }
+    function update(){
+      conf.forEach(o=>{
+        o.y += o.d/35;
+        o.ang += o.inc;
+        o.tilt = Math.sin(o.ang)*13;
+        if(o.y > innerHeight){
+          o.x = Math.random()*innerWidth;
+          o.y = -12;
+          o.tilt = Math.random()*20-10;
+        }
+      });
+    }
+    (function anim(){
+      draw();
+      update();
+      requestAnimationFrame(anim);
+    })();
+  </script>
+</body>
+</html>
