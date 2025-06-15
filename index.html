@@ -10,7 +10,8 @@
   />
   <style>
     body {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       background: #ffe6f0;
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
@@ -143,14 +144,12 @@
     <span class="heart" style="left:80%; top:25%;">⭐</span>
     <span class="heart" style="left:40%; top:70%;">💖</span>
 
-    <!-- Stickers superiores -->
     <div class="row-top">
       <img src="gatitos6.jpg" class="sticker" alt="Gatitos 6">
       <img src="gatitos4.jpg" class="sticker" alt="Gatitos 4">
       <img src="gatitos2.jpg" class="sticker" alt="Gatitos 2">
     </div>
 
-    <!-- Texto y sticker central -->
     <div class="texto-central">
       <h1 class="titulo-cumple">Feliz cumpleaños majo</h1>
       <p class="dedicatoria-cumple">
@@ -159,15 +158,14 @@
       <img src="gatitos5.jpg" class="center-bot" alt="Gatitos 5">
     </div>
 
-    <!-- Stickers inferiores (con ruta corregida) -->
     <div class="row-bottom">
       <img src="gatitos.jpg" class="sticker" alt="Gatitos">
       <img src="gatitos3.jpg" class="sticker" alt="Gatitos 3">
     </div>
   </div>
 
-  <!-- Música -->
-  <audio id="musica" src="heylover.mp3" loop playsinline muted></audio>
+  <!-- Música (sin muted) -->
+  <audio id="musica" src="heylover.mp3" loop playsinline></audio>
 
   <script>
     const btn = document.getElementById('boton-abre'),
@@ -179,7 +177,10 @@
           musica = document.getElementById('musica');
 
     btn.onclick = () => {
-      musica.play().catch(() => {});
+      // Reproduce la música en el gesto de clic
+      musica.play().catch(e => console.log('Error al reproducir:', e));
+
+      // Oculta sticker inicial y botón
       stickerInit.style.display = 'none';
       btn.style.display = 'none';
       gif.style.display = 'block';
@@ -195,7 +196,8 @@
           setTimeout(() => {
             init.style.display = 'none';
             show.style.display = 'block';
-            musica.muted = false;
+            // Asegura que siga sonando
+            musica.play().catch(() => {});
           }, 300);
         } else {
           cnt.textContent = `Abre en ${t.toFixed(1)}s`;
