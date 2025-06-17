@@ -4,14 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Feliz Cumpleaños</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;400&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;400&display=swap" rel="stylesheet"/>
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: #ffe6f0;
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
@@ -153,7 +149,7 @@
     <div class="texto-central">
       <h1 class="titulo-cumple">Feliz cumpleaños majo</h1>
       <p class="dedicatoria-cumple">
-        Puede que la distancia nos separe pero mi cariño por ti romperá esa barrera que nos separa físicamente ❤️
+        Puede que la distancia nos separe, pero mi cariño por ti romperá esa barrera que nos separa físicamente, te quiero mucho hermanita ❤️
       </p>
       <img src="gatitos5.jpg" class="center-bot" alt="Gatitos 5">
     </div>
@@ -164,7 +160,7 @@
     </div>
   </div>
 
-  <!-- Música (sin muted) -->
+  <!-- Música -->
   <audio id="musica" src="heylover.mp3" loop playsinline></audio>
 
   <script>
@@ -177,10 +173,7 @@
           musica = document.getElementById('musica');
 
     btn.onclick = () => {
-      // Reproduce la música en el gesto de clic
-      musica.play().catch(e => console.log('Error al reproducir:', e));
-
-      // Oculta sticker inicial y botón
+      musica.play().catch(() => {});
       stickerInit.style.display = 'none';
       btn.style.display = 'none';
       gif.style.display = 'block';
@@ -196,7 +189,6 @@
           setTimeout(() => {
             init.style.display = 'none';
             show.style.display = 'block';
-            // Asegura que siga sonando
             musica.play().catch(() => {});
           }, 300);
         } else {
